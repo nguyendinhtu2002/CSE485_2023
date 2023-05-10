@@ -98,19 +98,21 @@ if($id){
         .delete-btn:hover {
             background-color: #9b2020;
         }
+        body {
+			background-color: bisque;
+		}
     </style>
     </head>
 
-    <body>
-        <h1 style="text-align: center;color: blue;">Student Management</h1>
+    <body >
+        <h1 style="text-align: center;color: blue;margin:4rem ">Student Management</h1>
         <table id="product-table">
             <thead>
                 <tr>
                     <th>ID</th>
                     <th>Name</th>
-                    <th>age</th>
-                    <th>grade</th>
-                    <th></th>
+                    <th>Age</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -127,9 +129,7 @@ if($id){
                         <td>
                             <?php echo $student->getAge() ?>
                         </td>
-                        <td>
-                            <?php echo $student->getgrade() ?>
-                        </td>
+                      
                         <td>
                             <form action="update-student.php" method="POST" style="display: inline-block">
                                 <input type="hidden" name="id" value="<?php echo $student->getId() ?>">
@@ -148,20 +148,22 @@ if($id){
 
             </tbody>
         </table>
-        <h2 style="color: blue;">ADD</h2>
-        <form id="product-form" method="POST" action="create_student.php">
+        <a href="add.php" style="display: inline-block">
+            <button type="submit" class="btn btn-warning" style="background-color:darkmagenta;font-weight:500;margin:2rem 2rem">ADD</button>
+        </a>
+        <!-- <form id="product-form" method="POST" action="create_student.php">
             <input type="hidden" id="product-id">
             <label for="product-name">Name:</label>
             <input type="text" id="product-name" required>
             <label for="product-price" name>Age:</label>
-            <!-- <input type="hidden" id="product-age"> -->
-            <!-- <label for="product-age">Age:</label> -->
+             <-- <input type="hidden" id="product-age"> -
+             <label for="product-age">Age:</label> -- --
             <input type="text" id="product-age" required>
             <label for="product-grade">Grade:</label>
             <input type="number" id="product-grade" required>
             <button class="button" id="save-button" type="submit">Save</button>
             <button class="button" id="cancel-button" type="button">Cancel</button>
-        </form>
+        </form>  -->
         <script>
             // Load products from localStorage on page load
             // function loadProducts() {

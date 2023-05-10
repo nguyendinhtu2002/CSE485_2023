@@ -7,22 +7,30 @@ use Models\Student;
 
 class StudentDAO
 {
-    public function create(array $request)
+    public function create( $name,$age)
     {
         $file_path = "../data/data.txt";
         $file = fopen($file_path, 'a+');
 
         $lines = file($file_path);
         $last_line = $lines[count($lines) - 1];
+        
         $row = explode(",", $last_line);
-
-        $id = $row[0] + 1;
-        $name = $request['name'];
-        $age = $request['age'];
-
-        $data = "$id,$name,$age\n";
-        fwrite($file, $data);
-        fclose($file);
+        // echo count($lines);
+        if(count($lines)==0){
+            $id = 1;
+            $data = "$id,$name,$age\n";
+            fwrite($file, $data);
+            fclose($file);
+        }
+        else
+        {
+            $id= $row[0] + 1;
+            $data = "$id,$name,$age\n";
+            fwrite($file, $data);
+            fclose($file);
+        }  
+        
     }
 
     public function read()
@@ -43,7 +51,8 @@ class StudentDAO
         $file = fopen($file_path, 'r');
         $students = [];
         if ($file) {
-            while (($line = fgets($file)) ) {
+            fgets($file);
+            while (($line = fgets($file))!=false ) {
                 $data = explode(',', $line);
                 $id = $data[0];
                 $name = $data[1];
@@ -70,7 +79,7 @@ class StudentDAO
         while (($line = fgets($file)) != false) {
             $data = explode(',', $line);
             if ($data[0] == $id) {
-                $newData = $data[0] . ',' . $data[1] . ',' . $data[2] . ',' . $newGrade . PHP_EOL;
+                $newData = $data[0] . ',' . $data[1] . ',' . $newGrade . ','  . PHP_EOL;
                 fseek($file, -strlen($line), SEEK_CUR);
                 ftruncate($file, ftell($file));
                 fwrite($file, $newData);
@@ -80,6 +89,7 @@ class StudentDAO
         fclose($file);
         return true;
     }
+
 
     public function getById($id)
     {
