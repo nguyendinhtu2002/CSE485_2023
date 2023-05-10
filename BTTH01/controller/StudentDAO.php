@@ -70,7 +70,7 @@ class StudentDAO
         while (($line = fgets($file)) != false) {
             $data = explode(',', $line);
             if ($data[0] == $id) {
-                $newData = $data[0] . ',' . $data[1] . ',' . $data[2] . ',' . $newGrade . PHP_EOL;
+                $newData = $data[0] . ',' . $data[1] . ',' . $newGrade . ','  . PHP_EOL;
                 fseek($file, -strlen($line), SEEK_CUR);
                 ftruncate($file, ftell($file));
                 fwrite($file, $newData);
