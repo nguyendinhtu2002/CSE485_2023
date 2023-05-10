@@ -6,7 +6,13 @@ include_once '../model/Student.php';
 
 $studentDAO = new StudentDAO();
 $studentList = $studentDAO->getAll();
-// echo($studentList)
+$id = $_POST['id'] ?? null;
+if($id){
+    $studentDAO->delete($id);
+    $studentList = $studentDAO->getAll();
+}
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -129,7 +135,7 @@ $studentList = $studentDAO->getAll();
                                 <input type="hidden" name="id" value="<?php echo $student->getId() ?>">
                                 <button type="submit" class="btn btn-warning">Sửa</button>
                             </form>
-                            <form action="delete-student.php" method="POST" style="display: inline-block">
+                            <form  method="POST" style="display: inline-block">
                                 <input type="hidden" name="id" value="<?php echo $student->getId() ?>">
                                 <button type="submit" class="btn btn-danger"
                                     onclick="return confirm('Bạn có chắc muốn xóa?')">
