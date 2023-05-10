@@ -1,18 +1,29 @@
 <?php
+namespace Models;
+
 class Student
 {
     private $id;
     private $name;
-    private $email;
+
+    private $age;
     private $grade;
 
+    public function __construct()
+    {
+        $this->id = 0;
+        $this->name = "";
+        $this->grade = "";
+        $this->age = "";
+    }
     // Hàm khởi tạo
-    public function __construct($id, $name, $email, $grade)
+    public function __construct2($id, $name, $grade, $age)
     {
         $this->id = $id;
         $this->name = $name;
-        $this->email = $email;
         $this->grade = $grade;
+        $this->age = $age;
+
     }
 
     // Getter và setter cho các thuộc tính
@@ -25,7 +36,15 @@ class Student
     {
         $this->id = $id;
     }
+    public function getAge()
+    {
+        return $this->age;
+    }
 
+    public function setAge($age)
+    {
+        $this->age = $age;
+    }
     public function getName()
     {
         return $this->name;
@@ -36,15 +55,6 @@ class Student
         $this->name = $name;
     }
 
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    public function setEmail($email)
-    {
-        $this->email = $email;
-    }
 
     public function getGrade()
     {
@@ -54,5 +64,9 @@ class Student
     public function setgrade($grade)
     {
         $this->grade = $grade;
+    }
+    public function __toString()
+    {
+        return "Student[ID={$this->id}, NAME={$this->name}, AGE={$this->age}]";
     }
 }
