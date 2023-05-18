@@ -10,5 +10,8 @@ class Connect
     public function __construct(){
         $connect = new PDO("mysql:host=$this->host;dbname=$this->dbname", $this->username, $this->password);
     }
+    public function query($sql){
+        
+    }
     
 }
