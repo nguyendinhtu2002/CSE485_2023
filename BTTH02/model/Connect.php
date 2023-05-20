@@ -6,12 +6,16 @@ class Connect
     private $dbname = 'tlu';
     private $username = 'root';
     private $password = '';
+    private $pdo;
 
-    public function __construct(){
-        $connect = new PDO("mysql:host=$this->host;dbname=$this->dbname", $this->username, $this->password);
+    public function __construct()
+    {
+        $this->pdo = new PDO("mysql:host=$this->host;dbname=$this->dbname", $this->username, $this->password);
     }
-    public function query($sql){
-        
+    
+    public function getPDO()
+    {
+        return $this->pdo;
     }
     
 }
