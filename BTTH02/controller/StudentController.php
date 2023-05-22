@@ -32,8 +32,7 @@ class StudenController
         $statement->bindParam(':id', $id);
         $statement->execute();
         $result = $statement->fetch(PDO::FETCH_ASSOC);
-
-        print_r($result);
+        return $result;
     }
     public function updateStudent($id, $name, $birth, $email)
     {
@@ -70,9 +69,8 @@ class StudenController
         $stmt = $pdo->prepare($sql);
         $stmt->bindValue(':student_id', $id, PDO::PARAM_INT);
         $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        print_r($result);
-
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
     }
 
 }
