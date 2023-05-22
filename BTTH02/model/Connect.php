@@ -3,7 +3,7 @@
 class Connect
 {
     private $host = 'localhost';
-    private $dbname = 'tlu';
+    private $dbname = 'cse485';
     private $username = 'root';
     private $password = '';
     private $pdo;

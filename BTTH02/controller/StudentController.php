@@ -62,7 +62,7 @@ class StudenController
 
         $pdo = $connect->getPDO();
 
-        $sql = "SELECT c.id, c.title, c.description
+        $sql = "SELECT c.id, c.name, c.description
         FROM student_courses sc
         JOIN courses c ON sc.course_id = c.id
         WHERE sc.student_id = :student_id";
