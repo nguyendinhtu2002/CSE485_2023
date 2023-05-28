@@ -10,6 +10,7 @@ class ArticleController
         include("app/Views/users/index.php");
     }
 
+
 }
 
 

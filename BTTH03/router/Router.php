@@ -1,5 +1,5 @@
 <?php
-require_once './app/controllers/ArticleController.php';
+require_once 'app/controllers/ArticleController.php';
 
 // router/Router.php
 

@@ -175,4 +175,18 @@ class Article
         return $articles;
     }
 
+    public function  edit($id){
+        try{
+            $database = new ConnectDatabase();
+            $pdo = $database->getConnection();
+            if($pdo!=null){
+                $sql = "UPDATE students SET title=?, content=?, category_id=?,member_id=?,image_id=?,published=? WHERE id=?";
+                
+            }
+        }
+    catch (ErrorException $error){
+
+    }
+
+    }
 }
