@@ -13,25 +13,43 @@ class Router {
     public function post($url, $controllerAction) {
         $this->routes['POST'][$url] = $controllerAction;
     }
-
+    public function delete($url, $controllerAction) {
+        $this->routes['DELETE'][$url] = $controllerAction;
+    }
     public function handleRequest() {
         $url = $_SERVER['REQUEST_URI'];
         $method = $_SERVER['REQUEST_METHOD'];
-        if (isset($this->routes[$method][$url])) {
-            $controllerAction = $this->routes[$method][$url];
-            $this->callControllerAction($controllerAction);
-        } else {
-            // Xử lý khi không tìm thấy tuyến đường
-            echo "404 Not Found";
+
+        if (isset($this->routes[$method])) {
+            foreach ($this->routes[$method] as $route => $controllerAction) {
+                if ($this->isUrlMatch($url, $route)) {
+                    $this->callControllerAction($controllerAction);
+                    return;
+                }
+            }
         }
-   
+        echo "404 Not Found";
+    }
+
+    protected function isUrlMatch($url, $route) {
+        $pattern = preg_replace('/\/{(\w+)}/', '/([^\/]+)', $route);
+        return preg_match("#^$pattern$#", $url);
     }
 
     protected function callControllerAction($controllerAction) {
         list($controller, $action) = explode('@', $controllerAction);
 
-        // Tạo đối tượng Controller và gọi phương thức tương ứng
         $controllerObj = new $controller();
-        $controllerObj->$action();
+
+        $id = $this->extractIdFromUrl($_SERVER['REQUEST_URI']);
+
+        $controllerObj->$action($id);
+    }
+
+    public function extractIdFromUrl($url)
+    {
+        $matches = [];
+        preg_match('/\/(edit|delete)\/(\d+)/', $url, $matches);
+        return isset($matches[2]) ? $matches[2] : null;
     }
 }

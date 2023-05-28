@@ -6,5 +6,8 @@ $router = new Router();
 
 // Gọi phương thức get của đối tượng $router
 $router->get('/php/CSE485_2023/BTTH03/users', 'ArticleController@index');
-$router->get('/users/create', 'ArticleController@create');
-$router->post('/users/store', 'ArticleController@store');
+$router->get('/php/CSE485_2023/BTTH03/create', 'ArticleController@getViewCreate');
+$router->post('/php/CSE485_2023/BTTH03/create', 'ArticleController@createArticle');
+$router->delete('/php/CSE485_2023/BTTH03/delete/{id}', 'ArticleController@deleteArticle');
+$router->get('/php/CSE485_2023/BTTH03/edit/{id}', 'ArticleController@getDetails');
+$router->post('/php/CSE485_2023/BTTH03/edit/{id}', 'ArticleController@Update');
