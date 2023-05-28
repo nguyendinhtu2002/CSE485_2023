@@ -71,7 +71,7 @@
         </div>
         <div class="col-12">
             <button class="btn btn-primary" name="btnAdd" type="submit">Edit</button>
-            <a href="users" class="btn btn-primary">Quay lại</a>
+            <a href="/CSE485_2023/BTTH03/users" class="btn btn-primary">Quay lại</a>
 
         </div>
     </form>

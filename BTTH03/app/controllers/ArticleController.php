@@ -1,6 +1,6 @@
 <?php
-require_once 'app/models/Article.php';
-require_once('app/services/ArticleService.php');
+require_once ROOT_PATH . '/models/Article.php';
+require_once ROOT_PATH.'/services/ArticleService.php';
 
 class ArticleController
 {

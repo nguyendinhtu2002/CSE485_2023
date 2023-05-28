@@ -1,7 +1,10 @@
 <?php
-require_once('app/models/Article.php');
-require_once("app/config/db.php");
-require_once("router/Router.php");
+
+use app\router\Router;
+
+require_once ROOT_PATH . '/models/Article.php';
+require_once ROOT_PATH . "/config/db.php";
+require_once ROOT_PATH."/router/Router.php";
 
 class ArticleService{
     // Cac phuong thuc thao tac voi DB Server
